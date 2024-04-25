@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>839297790909-ol7qtj56km8u7if6u7aj7pam1cak3og6.apps.googleusercontent.com</string>
+	<string>839297790909-1iise9jf9d8rnjup41lnl46t5nvfsnoh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.839297790909-ol7qtj56km8u7if6u7aj7pam1cak3og6</string>
+	<string>com.googleusercontent.apps.839297790909-1iise9jf9d8rnjup41lnl46t5nvfsnoh</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>839297790909-45jba3pd0k85ljour31k6ctklu64gmf8.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.MovieApp999</string>
+	<string>com.MoviePicker</string>
 	<key>PROJECT_ID</key>
 	<string>movieapp-395b8</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:839297790909:ios:45b5c31fe9aea589d258d4</string>
+	<string>1:839297790909:ios:195197fa07ef0520d258d4</string>
 </dict>
 </plist>

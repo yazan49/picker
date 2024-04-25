@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MovieApp999.app"
-               BlueprintName = "MovieApp999"
-               ReferencedContainer = "container:MovieApp999.xcodeproj">
+               BuildableName = "MoviePicker.app"
+               BlueprintName = "MoviePicker"
+               ReferencedContainer = "container:MoviePicker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "MovieApp999Tests.xctest"
-               BlueprintName = "MovieApp999Tests"
-               ReferencedContainer = "container:MovieApp999.xcodeproj">
+               BuildableName = "MoviePickerTests.xctest"
+               BlueprintName = "MoviePickerTests"
+               ReferencedContainer = "container:MoviePicker.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MovieApp999.app"
-            BlueprintName = "MovieApp999"
-            ReferencedContainer = "container:MovieApp999.xcodeproj">
+            BuildableName = "MoviePicker.app"
+            BlueprintName = "MoviePicker"
+            ReferencedContainer = "container:MoviePicker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MovieApp999.app"
-            BlueprintName = "MovieApp999"
-            ReferencedContainer = "container:MovieApp999.xcodeproj">
+            BuildableName = "MoviePicker.app"
+            BlueprintName = "MoviePicker"
+            ReferencedContainer = "container:MoviePicker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

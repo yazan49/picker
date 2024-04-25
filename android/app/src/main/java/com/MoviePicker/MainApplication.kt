@@ -1,4 +1,4 @@
-package com.movieapp999
+package com.MoviePicker
 
 import android.app.Application
 import com.facebook.react.PackageList
