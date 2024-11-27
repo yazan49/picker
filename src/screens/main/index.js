@@ -29,8 +29,8 @@ import {useIsFocused} from '@react-navigation/native';
 import {useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {addToWatchlist} from '../../../WatchlistReducer';
-import {addToFavoriteActors} from '../../../FavoriteReducer';
+import {addToWatchlist} from '../../redux/WatchlistReducer';
+import {addToFavoriteActors} from '../../redux/FavoriteReducer';
 
 export default function MainScreen({navigation}) {
   const [nowPlayingData, setNowPlayingData] = useState([]);

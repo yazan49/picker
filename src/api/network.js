@@ -1,14 +1,16 @@
 import axios from 'axios';
+
+const token =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwM2M5MzRiOWMwNDllZjU0ZWFhYzhhNWM2MjNmZGNhNCIsInN1YiI6IjY1ZGIwNzE4NjJmMzM1MDE3YzRkMGQxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SCC3Ww2JJcqSljzFlhzUwVyBg5PBl5D-XNZaZWHa1fw';
+
 const searcConfig = {
   baseURL: 'https://api.themoviedb.org/3',
-  token:
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwM2M5MzRiOWMwNDllZjU0ZWFhYzhhNWM2MjNmZGNhNCIsInN1YiI6IjY1ZGIwNzE4NjJmMzM1MDE3YzRkMGQxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SCC3Ww2JJcqSljzFlhzUwVyBg5PBl5D-XNZaZWHa1fw',
+  token,
 };
 
 const config = {
   baseURL: 'https://api.themoviedb.org/3/movie',
-  token:
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwM2M5MzRiOWMwNDllZjU0ZWFhYzhhNWM2MjNmZGNhNCIsInN1YiI6IjY1ZGIwNzE4NjJmMzM1MDE3YzRkMGQxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SCC3Ww2JJcqSljzFlhzUwVyBg5PBl5D-XNZaZWHa1fw',
+  token,
 };
 const tvConfig = {
   baseURL: `https://api.themoviedb.org/3/tv`,
@@ -169,7 +171,7 @@ export const searchMovies = async query => {
   } catch (error) {
     console.error('Error in searchMovies:', error);
 
-    return {success: false, data: null, status: 500}; // Adjust the status code accordingly
+    return {success: false, data: null, status: 500};
   }
 };
 export const getAiringTv = async () => {

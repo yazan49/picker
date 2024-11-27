@@ -16,7 +16,6 @@ import {useNavigation} from '@react-navigation/native';
 export default function SeasonInfoScreen({route}) {
   const {seasonDetails} = route.params;
   const navigation = useNavigation();
-  //console.log('ttttt', seasonDetails.id);
 
   const renderEpisodeItem = ({item}) => (
     <TouchableOpacity
@@ -24,7 +23,7 @@ export default function SeasonInfoScreen({route}) {
       onPress={() =>
         navigation.navigate('Episode', {
           episodeData: item,
-          seriesId: seasonDetails.id, // Corrected from seasonId to seriesId
+          seriesId: seasonDetails.id,
           seasonNumber: item.season_number,
         })
       }>

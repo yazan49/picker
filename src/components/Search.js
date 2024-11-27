@@ -2,14 +2,13 @@ import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   TextInput,
-  Button,
   FlatList,
   Text,
   Image,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {searchMovies, searchTv, searchPerson} from '../api/network';
+import {searchMovies} from '../api/network';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     fontWeight: 'bold',
-    borderRadius: 20,
+    borderRadius: 5,
   },
   search: {
     backgroundColor: '#080808',

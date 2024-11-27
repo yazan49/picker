@@ -8,8 +8,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   Platform,
+  Vibration,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {getUpcomingMovies} from '../api/network';
 import {
   responsiveHeight,
@@ -19,11 +19,17 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {addToWatchlist, removeFromWatchlist} from '../redux/WatchlistReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function HomeBanner({navigation}) {
   const [upcomingApiData, setUpcomingApiData] = useState([]);
   const [flatListIndex, setFlatListIndex] = useState(0);
   const flatListRef = useRef(null);
+  const dispatch = useDispatch();
+  const watchlist = useSelector(state => state.watchlist.watchlist);
 
   useEffect(() => {
     const handleUpComingApi = async () => {
@@ -51,6 +57,57 @@ export default function HomeBanner({navigation}) {
     }
   }, [upcomingApiData, flatListIndex]);
 
+  const handleWatchlistAction = item => {
+    const isMovieInWatchlist = watchlist.some(i => i.id === item.id);
+
+    if (isMovieInWatchlist) {
+      removeFromWatchlistHandler(item);
+    } else {
+      addToWatchlistHandler(item);
+    }
+  };
+
+  const addToWatchlistHandler = item => {
+    dispatch(addToWatchlist(item));
+
+    Vibration.vibrate([200, 200, 200]);
+
+    // Save the updated watchlist to AsyncStorage
+    AsyncStorage.setItem(
+      'watchlist',
+      JSON.stringify([...watchlist, item]),
+    ).then(() => {
+      console.log('Movie added to watchlist and saved to AsyncStorage');
+      Toast.show({
+        type: 'success',
+        text1: `${item.title} added to your Watchlist`,
+        position: 'bottom',
+        visibilityTime: 2000,
+      });
+    });
+  };
+
+  const removeFromWatchlistHandler = item => {
+    Alert.alert(
+      'Remove from Watchlist',
+      'Are you sure you want to remove this movie from your watchlist?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Remove',
+          onPress: () => {
+            dispatch(removeFromWatchlist(item));
+            AsyncStorage.setItem('watchlist', JSON.stringify(watchlist));
+          },
+          style: 'destructive',
+        },
+      ],
+    );
+  };
+
   const handleScrollEnd = event => {
     const contentOffset = event.nativeEvent.contentOffset.x;
     const index = Math.round(contentOffset / responsiveWidth(100));
@@ -75,7 +132,7 @@ export default function HomeBanner({navigation}) {
         <LinearGradient
           colors={['rgba(0,0,0,0.05)', 'rgba(0,0,0,7)']}
           style={styles.linearGradient}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleWatchlistAction(item)}>
             {Platform.OS === 'android' ? (
               <Ionicons name="add-circle" size={35} color="white" />
             ) : (

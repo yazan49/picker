@@ -3,15 +3,11 @@ import {
   Text,
   View,
   TextInput,
-  Button,
-  Image,
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import InputFeildComp from '../../components/InputFeildComp';
 import RoundButtonComp from '../../components/RoundButtonComp';
 import ImageButtonComp from '../../components/ImageButtonComp';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-toast-message';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useState, useEffect} from 'react';

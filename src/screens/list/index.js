@@ -14,7 +14,7 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {useSelector, useDispatch} from 'react-redux';
-import {removeFromWatchlist} from '../../../WatchlistReducer';
+import {removeFromWatchlist} from '../../redux/WatchlistReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
 

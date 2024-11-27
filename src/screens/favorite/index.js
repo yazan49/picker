@@ -16,7 +16,7 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
-import {removeFromFavoriteActors} from '../../../FavoriteReducer';
+import {removeFromFavoriteActors} from '../../redux/FavoriteReducer';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function Favorite({navigation}) {

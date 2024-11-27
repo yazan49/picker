@@ -21,7 +21,10 @@ import axios from 'axios';
 import {useEffect} from 'react';
 import SeasonCard from '../../components/SeasonCard';
 import CastCard from '../../components/CastCards';
-import {addToWatchlist, removeFromWatchlist} from '../../../WatchlistReducer';
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+} from '../../redux/WatchlistReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch, useSelector} from 'react-redux';
 import Toast from 'react-native-toast-message';
@@ -647,10 +650,6 @@ const styles = StyleSheet.create({
     marginTop: 13,
     marginLeft: 10,
     marginBottom: 5,
-  },
-  defaultImage: {
-    width: 40,
-    height: 60,
   },
   tmdb: {
     marginBottom: 20,

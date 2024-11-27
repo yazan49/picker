@@ -2,27 +2,27 @@
   "project_info": {
     "project_number": "839297790909",
     "project_id": "movieapp-395b8",
-    "storage_bucket": "movieapp-395b8.appspot.com"
+    "storage_bucket": "movieapp-395b8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:839297790909:android:aa66651301a3980bd258d4",
+        "mobilesdk_app_id": "1:839297790909:android:498e2f6dea2b16fed258d4",
         "android_client_info": {
-          "package_name": "com.movieapp999"
+          "package_name": "com.MoviePicker"
         }
       },
       "oauth_client": [
         {
-          "client_id": "839297790909-45jba3pd0k85ljour31k6ctklu64gmf8.apps.googleusercontent.com",
+          "client_id": "839297790909-o4k714rtq0r6miuom20cmqusgbbl8ppj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.movieapp999",
+            "package_name": "com.MoviePicker",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
-          "client_id": "839297790909-2tah4uhiruvhp9chradlu4ntspssjnhq.apps.googleusercontent.com",
+          "client_id": "839297790909-ccl25fgmadft6s5p1usi9uls4e6lpeh1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -37,6 +37,13 @@
             {
               "client_id": "839297790909-2tah4uhiruvhp9chradlu4ntspssjnhq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "839297790909-1iise9jf9d8rnjup41lnl46t5nvfsnoh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.MoviePicker"
+              }
             }
           ]
         }

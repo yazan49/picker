@@ -24,7 +24,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import CastCard from '../../components/CastCards';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToWatchlist, removeFromWatchlist} from '../../../WatchlistReducer';
+import {addToWatchlist, removeFromWatchlist} from '../../redux/WatchlistReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 

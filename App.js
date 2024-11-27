@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {forwardRef} from 'react';
+import React from 'react';
 import SplashScreen from './src/screens/splash';
 import SignUpScreen from './src/screens/signup';
 import MainScreen from './src/screens/main';
@@ -16,12 +16,11 @@ import ActorInfo from './src/screens/actor';
 import Search from './src/components/Search';
 import SeasonInfoScreen from './src/screens/seasonInfo';
 import EpisodeInfoScreen from './src/screens/episode';
-import Store from './Store';
+import Store from './src/redux/Store';
 import {Provider} from 'react-redux';
 import ListScreen from './src/screens/list';
 import FavoriteScreen from './src/screens/favorite';
 import Toast from 'react-native-toast-message';
-import {ForwardedRef} from 'react';
 import ImageScreen from './src/screens/image';
 
 const Stack = createNativeStackNavigator();
@@ -44,7 +43,7 @@ const MainNavigator = () => (
         tabBarIcon: ({focused}) => (
           <View>
             <Image
-              source={require('../../yazanodeh/MovieApp999/src/assets/home.png')}
+              source={require('../picker/src/assets/home.png')}
               resizeMode="contain"
               style={{
                 width: 25,
@@ -63,7 +62,7 @@ const MainNavigator = () => (
         tabBarIcon: ({focused}) => (
           <View>
             <Image
-              source={require('../../yazanodeh/MovieApp999/src/assets/ssearch.png')}
+              source={require('../picker/src/assets/ssearch.png')}
               resizeMode="contain"
               style={{
                 width: 25,
@@ -83,7 +82,7 @@ const MainNavigator = () => (
         tabBarIcon: ({focused}) => (
           <View>
             <Image
-              source={require('../../yazanodeh/MovieApp999/src/assets/picker.png')}
+              source={require('../picker/src/assets/picker.png')}
               resizeMode="contain"
               style={{
                 width: 25,
@@ -103,7 +102,7 @@ const MainNavigator = () => (
         tabBarIcon: ({focused}) => (
           <View>
             <Image
-              source={require('../../yazanodeh/MovieApp999/src/assets/profile.png')}
+              source={require('../picker/src/assets/profile.png')}
               resizeMode="contain"
               style={{
                 width: 35,
@@ -122,7 +121,13 @@ export default function App() {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={() => ({
+            contentStyle: {
+              backgroundColor: '#FFF',
+            },
+            animation: 'slide_from_left',
+          })}>
           <Stack.Screen
             name="Splash"
             component={SplashScreen}
@@ -247,7 +252,6 @@ export default function App() {
         </Stack.Navigator>
         <Toast
           config={{
-            // Customize toast style
             success: ({text1, props, ...rest}) => (
               <View
                 style={{

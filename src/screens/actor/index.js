@@ -24,7 +24,7 @@ import axios from 'axios';
 import {
   addToFavoriteActors,
   removeFromFavoriteActors,
-} from '../../../FavoriteReducer';
+} from '../../redux/FavoriteReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
