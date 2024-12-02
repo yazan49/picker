@@ -3,13 +3,13 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet,
   StatusBar,
   ImageBackground,
   Image,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
-import {useState} from 'react';
+import { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import movieData from './movieData';
 import axios from 'axios';
@@ -17,48 +17,50 @@ import {
   responsiveHeight,
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import { token } from '../../api/network';
 
 export const getDetails = async movieId => {
-  const apiKey =
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwM2M5MzRiOWMwNDllZjU0ZWFhYzhhNWM2MjNmZGNhNCIsInN1YiI6IjY1ZGIwNzE4NjJmMzM1MDE3YzRkMGQxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SCC3Ww2JJcqSljzFlhzUwVyBg5PBl5D-XNZaZWHa1fw'; // Replace with your TMDb API key
   const baseURL = 'https://api.themoviedb.org/3/movie/';
-
   try {
     const response = await axios.get(`${baseURL}${movieId}`, {
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = response.data;
     const status = response.status;
-    return {success: true, data: data, status: status};
+    return { success: true, data: data, status: status };
   } catch (error) {
     console.log(error);
     console.log('id : ', movieId);
-    return {success: false, data: error};
+    return { success: false, data: error };
   }
 };
 
-export default function PickerScreen({navigation}) {
+export default function PickerScreen({ navigation }) {
   const [movieType, setMovieType] = useState('none');
   const [desiredFeeling, setDesiredFeeling] = useState('none');
   const [recommendedMovie, setRecommendedMovie] = useState(null);
   const [showWelcome, setShowWelcome] = useState(true);
   const [movieDetails, setMovieDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [showAnotherOneButton, setShowAnotherOneButton] = useState(false);
 
   const movieGroups = movieData;
 
   const handleGetDetails = async () => {
+    setIsLoading(true);
+
     if (recommendedMovie && recommendedMovie.movieId) {
-      const {success, data, status} = await getDetails(
-        recommendedMovie.movieId,
+      const { success, data, status } = await getDetails(
+        recommendedMovie.movieId
       );
+      setIsLoading(false);
 
       if (success) {
         setMovieDetails(data);
-        navigation.navigate('Movie', {movieData: data}); // Navigate to MovieScreen with movieDetails
+        navigation.navigate('Movie', { movieData: data });
       } else {
         console.error('Error fetching movie details. Status:', status);
       }
@@ -66,10 +68,11 @@ export default function PickerScreen({navigation}) {
   };
 
   const handleAnotherOnePress = () => {
-    handleRecommendation(); // Call the handleRecommendation function again to get another recommendation
+    handleRecommendation();
   };
 
   const handleRecommendation = async () => {
+    setIsLoading(true);
     const lowercaseMovieType = movieType.toLowerCase();
     const lowercaseDesiredFeeling = desiredFeeling.toLowerCase();
 
@@ -81,16 +84,16 @@ export default function PickerScreen({navigation}) {
       const randomIndex = Math.floor(Math.random() * group.length);
       const selectedMovie = group[randomIndex];
 
-      // Fetch movie details
       if (selectedMovie && selectedMovie.movieId) {
         try {
-          const {success, data, status} = await getDetails(
-            selectedMovie.movieId,
+          const { success, data, status } = await getDetails(
+            selectedMovie.movieId
           );
+          setIsLoading(false);
 
           if (success) {
             setMovieDetails(data);
-            setRecommendedMovie(selectedMovie); // Set the recommended movie only after fetching details
+            setRecommendedMovie(selectedMovie);
             setShowAnotherOneButton(true);
           } else {
             console.error('Error fetching movie details. Status:', status);
@@ -101,7 +104,7 @@ export default function PickerScreen({navigation}) {
       }
     } else {
       setRecommendedMovie(
-        'Sorry, no recommendation available for your selection.',
+        'Sorry, no recommendation available for your selection.'
       );
     }
   };
@@ -110,16 +113,16 @@ export default function PickerScreen({navigation}) {
     setShowWelcome(false);
   };
 
-  //console.log(movieDetails);
-
+  console.log('ssss' , isLoading)
   return (
     <View style={showWelcome ? welcomeStyles.container : mainStyles.container}>
       {showWelcome && (
         <ImageBackground
           style={welcomeStyles.img}
-          source={require('../../assets/movieB.png')}>
+          source={require('../../assets/movieB.png')}
+        >
           <View style={welcomeStyles.appName}>
-            <Text style={[welcomeStyles.appNameLetter, {fontSize: 60}]}>
+            <Text style={[welcomeStyles.appNameLetter, { fontSize: 60 }]}>
               Movie
             </Text>
           </View>
@@ -218,7 +221,7 @@ export default function PickerScreen({navigation}) {
                 items={[
                   {label: 'Happy', value: 'happy'},
                   {label: 'Sad', value: 'sad'},
-                  {label: 'Excited', value: 'excited'}, // Corrected typo
+                  {label: 'Excited', value: 'excited'}
                 ]}
                 textStyle={mainStyles.dropdownText}
                 style={{
@@ -230,8 +233,13 @@ export default function PickerScreen({navigation}) {
 
             <TouchableOpacity
               style={mainStyles.button}
-              onPress={handleRecommendation}>
-              <Text style={mainStyles.buttonText}>Get Recommendation</Text>
+              onPress={handleRecommendation}
+            >
+              {isLoading ? (
+                <ActivityIndicator size="small" color={'white'} />
+              ) : (
+                <Text style={mainStyles.buttonText}>Get Recommendation</Text>
+              )}
             </TouchableOpacity>
 
             <View style={mainStyles.recommendedMovieContainer}>
@@ -272,7 +280,6 @@ export default function PickerScreen({navigation}) {
                     </Text>
                   </TouchableOpacity>
                 )}
-                {/* Show Another One button only when showAnotherOneButton is true */}
                 {showAnotherOneButton && (
                   <TouchableOpacity onPress={handleAnotherOnePress}>
                     <Text
@@ -319,7 +326,7 @@ const welcomeStyles = {
     color: '#ffffff',
     fontSize: 24,
     marginBottom: 20,
-    marginTop: 20, // Adjust this value as needed
+    marginTop: 20,
     paddingHorizontal: 20,
   },
   nextButton: {
@@ -343,8 +350,8 @@ const welcomeStyles = {
   intro: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-end', // Move content to the bottom
-    marginBottom: 20, // Add marginBottom to adjust spacing from the bottom
+    justifyContent: 'flex-end',
+    marginBottom: 20,
   },
 };
 
