@@ -84,7 +84,7 @@ export default function ProfileScreen({navigation}) {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.profileCard}>
           <Image
@@ -174,7 +174,7 @@ export default function ProfileScreen({navigation}) {
           />
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
